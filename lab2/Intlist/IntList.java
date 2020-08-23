@@ -5,7 +5,7 @@ import java.util.Formatter;
  * with a large number of additional methods.
  *
  * @author P. N. Hilfinger, with some modifications by Josh Hug and melaniecebula
- *         [Do not modify this file.]
+ * [Do not modify this file.]
  */
 public class IntList {
     /**
@@ -29,7 +29,7 @@ public class IntList {
      * A List with null rest, and first = 0.
      */
     public IntList() {
-    /* NOTE: public IntList () { }  would also work. */
+        /* NOTE: public IntList () { }  would also work. */
         this(0, null);
     }
 
@@ -83,13 +83,22 @@ public class IntList {
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
 
-        IntList tmp = A;
-        while (tmp.rest != null){
-            tmp = tmp.rest;
+        if (null != A && null != B) {
+
+            IntList tmp = A;
+            while (tmp.rest != null) {
+                tmp = tmp.rest;
+            }
+            tmp.rest = B;
+
+            return A;
+        } else if( null == A) {
+            return B;
         }
-        tmp.rest = B;
 
         return A;
+
+
     }
 
     /**
@@ -99,38 +108,31 @@ public class IntList {
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
 
-        IntList res = new IntList(A.first, null);
-        IntList ptr = A;
-        IntList resPtr = res;
-        while (ptr.rest != null) {
-            ptr = ptr.rest;
-            resPtr.rest = new IntList(ptr.first,null);
-            resPtr = resPtr.rest;
-        }
-        ptr = B;
-        while (ptr.rest != null) {
-            resPtr.rest = new IntList(ptr.first,null);
-            ptr = ptr.rest;
-            resPtr = resPtr.rest;
-        }
-        resPtr.rest = new IntList(ptr.first,null);
+        if (null != A && null != B) {
+            IntList res = new IntList(A.first, null);
+            IntList ptr = A;
+            IntList resPtr = res;
+            while (ptr.rest != null) {
+                ptr = ptr.rest;
+                resPtr.rest = new IntList(ptr.first, null);
+                resPtr = resPtr.rest;
+            }
+            ptr = B;
+            while (ptr.rest != null) {
+                resPtr.rest = new IntList(ptr.first, null);
+                ptr = ptr.rest;
+                resPtr = resPtr.rest;
+            }
+            resPtr.rest = new IntList(ptr.first, null);
 
-        return res;
+            return res;
+        }else if( null == A){
+            return B;
+        }
+
+        return A;
+
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**
